@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Driving Simulator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="css/main.css">
+
+</head>
+
+<body>
+  <!--Generation Info & Controls-->
+  <div class="container" id="info_container">
+    <br><br><br>
+    <h3 id="car_count"></h3>
+    <h3 id="generation"></h3>
+    <h3 id="distance"></h3>
+  </div>
+  <div class="container" id="button_container">
+    <button onclick="save_best()">Save</button>
+    <button onclick="delete_best()">Delete</button>
+  </div>
+
+  <!--Canvas-->
+  <canvas id="main_canvas"></canvas>
+
+  <!--Scripts-->
+  <script src="js/network.js"></script>
+  <script src="js/sensor.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/road.js"></script>
+  <script src="js/controls.js"></script>
+  <script src="js/car.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>

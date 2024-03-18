@@ -1,0 +1,163 @@
+CONTROLS (WHAT IS READ, AND HOW THEY ARE CALCULATED)          EMPTY              HIT
+==============================================================================================================
+FORWARD CONTROL
+front 		(no hits mean agent can speed up)                 fwd++           /   rvs++
+left_1		(far away objects do not mandate a turn)          left+, fwd+     /   right+, rvs+
+right_1		                                                  right+,fwd+     /   left+, rvs+
+rear		  (tailgating cars encourage speeding up)           fwd+            /   fwd++
+==============================================================================================================
+LEFT CONTROL
+left 1		                                                  left+, fwd+     /   right+, rvs+
+left_2		(close or numerous objects indicate walls)        left+           /   right+, fwd+
+rear_left	                                                  right+, fwd+    /   right+, fwd+
+==============================================================================================================
+RIGHT CONTROL
+right_1                                                     right+, fwd+    /   left+, rvs+
+right_2                                                     right+          /   left+, fwd+
+rear_right                                                  left+, fwd+     /   left+, fwd+
+==============================================================================================================
+REVERSE CONTROL
+rear_left                                                   right+, fwd+    /   right+, fwd+
+rear_right                                                  left+, fwd+     /   left+, fwd+
+==============================================================================================================
+SUMMARY OF SENSORS      EMPTY       |      HIT
+- Front           :     fwd++       |    rvs++
+                                    |
+- Left 1          :   left+, fwd+   |  right+, rvs+
+- Left 2          :     left+       |  right+, fwd+
+- Rear Left       :   right+, fwd+  |  right+, fwd+
+                                    |
+- Right 1         :   right+, fwd+  |  left+, rvs+
+- Right 2         :     right+      |  left+, fwd+
+- Rear Right      :   left+, fwd+   |  left+, fwd+
+==============================================================================================================
+
+Sensors have a limited range of vision.
+Cars share information to others within its range.
+	Information is given to receiving car as a "hit" in their sensor, with modified offset
+	Receiving car then broadcasts its information withing its own range.
+
+* Truncate which sensor to attribute a hit to
+* Map controls and add randomness to certain variables
+
+back_left: this.readings[0],
+left_front: this.readings[2],
+left_rear: this.readings[1],
+front: this.readings[3],
+right_front: this.readings[4],
+right_rear: this.readings[5],
+back_right: this.readings[6]
+
+
+Type 0 - Positive
+  Connects to :
+    -   0 Pos   ( Continue straight )
+    -   1 Pos   ( Right turn to 🔼 )
+    -   2 Pos   ( Continue to ◀ )
+    -   3 Pos   ( Right turn to 🔽 )
+    -   5 Neg   ( Right diagonal / )
+
+Type 0 - Negative
+  Connects to :
+    -   0 Neg
+    -   1 Pos
+    -   2 Neg
+    -   3 Pos
+    -   4 Pos
+
+Type 1 - Positive
+  Connects to:
+    -   0 Neg
+    -   1 Pos
+    -   2 Pos
+    -   3 Pos
+    -   4 Pos
+
+Type 1 - Negative
+  Connects to:
+    -   1 Neg
+    -   0 Neg
+    -   2 Neg
+    -   3 Neg
+    -   5 Neg
+
+Type 2 - Positive
+  Connects to:
+    -   2 Pos
+    -   0 Pos
+    -   1 Neg
+    -   3 Neg
+    -   4 Neg
+
+Type 2 - Negative
+  Connects to:
+    -   2 Neg
+    -   0 Neg
+    -   1 Neg
+    -   3 Neg
+    -   5 Pos
+
+Type 3 - Positive
+  Connects to:
+    -   3 Pos
+    -   0 Pos
+    -   1 Pos
+    -   2 Pos
+    -   5 Neg
+
+Type 3 - Negative
+  Connects to:
+    -   3 Neg
+    -   0 Pos
+    -   1 Neg
+    -   2 Pos
+    -   4 Neg
+
+Type 4 - Positive
+  Connects to:
+    -   0 Neg
+    -   1 Pos
+    -   2 Neg
+    -   3 Pos
+    -   4 Pos
+
+Type 4 - Negative
+  Connects to:
+    -   0 Pos
+    -   1 Neg
+    -   2 Pos
+    -   3 Pos
+    -   4 Neg
+
+Type 5 - Positive
+  Connects to:
+    -   0 Neg
+    -   1 Pos
+    -   2 Neg
+    -   3 Pos
+    -   5 Pos
+
+Type 5 - Negative
+  Connects to:
+    -   0 Pos
+    -   1 Pos
+    -   2 Pos
+    -   3 Pos
+    -   5 Neg
+
+
+BAGIAN PROGRAM
+    -   Road Generation
+    -   Sensors (Ray Casting)
+    -   Collision Detection
+    -   Swarm Intel (Info Sharing)
+    -   Genetic Algo (Mutation)
+
+
+
+
+
+
+
+
+

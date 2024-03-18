@@ -1,0 +1,28 @@
+body {
+  background-color: #1e211e;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+canvas {
+  background-color: #1e211e;
+}
+
+#info_container {
+  position: absolute;
+  padding-top: 1rem;
+  text-align: center;
+}
+
+#button_container {
+  position: absolute;
+  padding-top: 1rem;
+}
+
+#button_container > button {
+  height: 50px;
+  width: 125px;
+  font-size: larger;
+}
